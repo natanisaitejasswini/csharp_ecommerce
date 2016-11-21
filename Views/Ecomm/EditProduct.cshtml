@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit a User</title>
+   <link rel="stylesheet" href="~/css/site.css"/>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+</head>
+<body>
+    <nav>
+       <ul class="nav nav-tabs">
+        <li role="presentation">
+        <a href="/dashboard">Home</a>
+      </li>
+       <li role="presentation">
+        <a href="/yourproducts">Products</a>
+      </li>
+      <li role="presentation">
+        <a href="/products">Add Products</a>
+      </li>
+      <li role="presentation">
+        <a href="/orders">Orders</a>
+      </li>
+      <li role="presentation">
+        <a href="/customers">Customers</a>
+    </li>
+      <li role="presentation">
+        <a href="/">Logout</a>
+      </li>
+       <li>
+        <a class="move_right_name" data-toggle="dropdown">@ViewBag.User_one.first_name</a>
+        </li>
+    </ul> 
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h1>Edit your Product</h1>
+          <form action="/editproduct" method="Post">
+            <div class='form-group'>
+              <label for="product_name">Product Name </label>
+              <input type="text" name="product_name" id="product_name" value="@ViewBag.EditProduct_Profile.product_name">
+            </div>
+            <div class='form-group'>
+              <label for="description">Description </label>
+              <input type="text" name="description" id="description" value="@ViewBag.EditProduct_Profile.description">
+            </div>
+            <div class='form-group'>
+              <label for="image">Image </label>
+              <input type="text" name="image" id="image" value="@ViewBag.EditProduct_Profile.image">
+            </div>
+            <div class='form-group'>
+              <label for="qunatity">Quantity </label>
+              <input id="qunatity" type="number" name="quantity" value="@ViewBag.EditProduct_Profile.quantity">
+            </div>
+            <div class='form-group'>
+              <label for="price">Price </label>
+              <input id="price" type="number" step= "any" name="price" value="@ViewBag.EditProduct_Profile.price">
+            </div>
+            <div class='form-group'>
+              <input type="hidden" name="id" value="@ViewBag.EditProduct_Profile.id">
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+          </form>
+        </div>
+           <ul>
+                @{
+                    if(ViewBag.errors != null){
+                        foreach(var error in ViewBag.errors){
+                        <p class="errors">@error</p>
+                        }
+                    }   
+                } 
+              </ul>
+        </div>
+        </div>
+</body>
+</html>

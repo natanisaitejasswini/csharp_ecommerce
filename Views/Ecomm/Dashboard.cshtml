@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+</head>
+<body>
+    <nav>
+    <ul class="nav nav-tabs">
+    <li role="presentation" class="active">
+        <a href="/dashboard">Home</a>
+      </li>
+       <li role="presentation">
+        <a href="/yourproducts">Products</a>
+      </li>
+      <li role="presentation">
+        <a href="/products">Add Products</a>
+      </li>
+      <li role="presentation">
+        <a href="/orders">Orders</a>
+      </li>
+      <li role="presentation">
+        <a href="/customers">Customers</a>
+    </li>
+      <li role="presentation">
+        <a href="/">Logout</a>
+      </li>
+        <li>
+        <a class="move_right_name" data-toggle="dropdown">@ViewBag.User_one.first_name</a>
+        </li>
+    </ul>
+  </nav>
+       @{
+            foreach(var All in ViewBag.All_products){
+    <div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                        <img src="@All.image" class="img-rounded img-responsive" />
+                    </div>
+                    <div class="col-sm-6 col-md-8">
+                        <h4>@All.product_name</h4>
+                        <p>
+                             @All.description <br />
+                            Price: <i class="glyphicon glyphicon-usd"></i> @All.price
+                            <br />
+                            Quantity:  @All.quantity</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+      }
+ }
+<body>

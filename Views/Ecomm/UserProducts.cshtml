@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Products</title>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+</head>
+<body>
+    <nav>
+    <ul class="nav nav-tabs">
+    <li role="presentation">
+        <a href="/dashboard">Home</a>
+      </li>
+       <li role="presentation" class="active">
+        <a href="/yourproducts">Products</a>
+      </li>
+      <li role="presentation">
+        <a href="/products">Add Products</a>
+      </li>
+      <li role="presentation">
+        <a href="/orders">Orders</a>
+      </li>
+      <li role="presentation">
+        <a href="/customers">Customers</a>
+    </li>
+      <li role="presentation">
+        <a href="/">Logout</a>
+      </li>
+       <li>
+        <a class="move_right_name" data-toggle="dropdown">@ViewBag.User_one.first_name</a>
+        </li>
+    </ul>
+  </nav>
+       @{
+            foreach(var products in ViewBag.All_productsofUsers){
+    <div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                        <img src="@products.image" class="img-rounded img-responsive" />
+                    </div>
+                    <div class="col-sm-6 col-md-8">
+                        <h4>@products.product_name</h4>
+                        <p>
+                            Price: <i class="glyphicon glyphicon-usd"></i> @products.price
+                            <br />
+                            Quantity:  @products.quantity</p>
+                    </div>
+                     <a href="/editproduct/@products.id" class="btn btn-info">Edit</a>
+                     <a href="/deleteproduct/@products.id" class="btn btn-warning" onclick="return confirm('Are you sure you want to remove your Product?');">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+      }
+ }
+<body>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Travel Plan</title> 
+     <link rel="stylesheet" href="~/css/site.css"/>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+</head>
+<body>
+  	<nav>
+    <ul class="nav nav-tabs">
+    <li role="presentation">
+        <a href="/dashboard">Home</a>
+      </li>
+    <li role="presentation">
+        <a href="/yourproducts">Products</a>
+    </li>
+    <li role="presentation">
+        <a href="/products">Add Products</a>
+      </li>
+      <li role="presentation" class="active">
+        <a href="/orders">Orders</a>
+      </li>
+      <li role="presentation">
+        <a href="/customers">Customers</a>
+      </li>
+      <li role="presentation">
+        <a href="/">Logout</a>
+      </li>
+      <li>
+        <a class="move_right_name" data-toggle="dropdown">@ViewBag.User_one.first_name</a>
+        </li>
+    </ul>
+  </nav>
+   <h1>Add a New Order </h1>
+   <div class ="container">
+  <div class="col-md-4">
+  <form action='/addorder' method='post'>
+        <div class='form-group'>
+            <label for='select'>Customer</label>
+            <select name="user_id" class="form-control">
+               @{
+                foreach(var Users in ViewBag.All_Users){  
+                <option value ="@Users.id">@Users.first_name</option>
+                }
+               }
+               </select>
+        </div>
+         <div class='form-group'>
+            <label for='select'>Product</label>
+            <select name="product_id" class="form-control">
+               @{
+                foreach(var All in ViewBag.All_products){ 
+                   @if( @All.quantity != 0 ){
+                    <option value ="@All.id">@All.product_name</option>
+                  }
+                }
+               }
+               </select>
+        </div>
+        <div class="form-group">
+              <label for="qty">Quantity</label>
+              <input type="number" class="form-control" name="quantity" id="qty">
+        </div>
+        <button type="submit" class="btn btn-default">Order</button><br><br>
+  </form>
+  </div>
+  <br><br>
+  <table class='table'>
+    <thead>
+      <th>Customer Name</th>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Date</th>
+      <th>Action</th>
+    </thead>
+    <tbody>
+    @{
+        foreach(var orders in ViewBag.All_orders){
+        <tr>
+            <td>@orders.first_name </td>
+            <td>@orders.product_name</td>
+            <td> @orders.quantity</td>
+            <td>@orders.price</td>
+            <td> @orders.created_at.ToString("MMMMdd,yyyy")</td>
+            <td>
+                <a href="/deleteorder/@orders.id" onclick="return confirm('Are you sure you want to remove this Order?');">Remove</a>
+            </td>
+        </tr>
+        }
+    }
+  </div>
+    @{
+        if(ViewBag.errors != null){
+            foreach(var error in ViewBag.errors){
+            <p class="errors">@error</p>
+            }
+        }   
+    } 
+</body>
+</html>
