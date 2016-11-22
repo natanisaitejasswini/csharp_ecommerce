@@ -39,7 +39,7 @@ namespace EcommApp.Factory
                 return dbConnection.Query<Product>("SELECT users.first_name, products.id, products.description, products.image, products.quantity, products.price, products.product_name , products.user_id FROM products LEFT JOIN users ON products.user_id = users.id;");
             }
         }
-        public void AddOrder(Order order_item, int price)
+        public void AddOrder(Order order_item, double price)
         {
              using (IDbConnection dbConnection = Connection)
             {

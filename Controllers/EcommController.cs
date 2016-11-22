@@ -175,7 +175,7 @@ namespace ecommerce.Controllers
             if(ModelState.IsValid)
             {
                 ViewBag.price = productsFactory.Extract_Price(neworder.product_id);
-                int price = ViewBag.price * neworder.quantity;
+                double price = ViewBag.price * neworder.quantity;
                 int extracted_quantity = productsFactory.Extract_Qunatity(neworder.product_id);
                 if(neworder.quantity > extracted_quantity){
                     temp_errors.Add("Only " +  extracted_quantity +  " left");
